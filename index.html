@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Brent Fitzgerald</title>
+  
+    <style>
+      p {
+        font-size:  x-large;
+      }
+    
+      p .tweet {
+      }
+      p .createdAt {
+        display: block;
+        font-size: small;
+      }
+    
+    </style>
+  
+  </head>
+  <body>
+  
+  
+    <script src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      var bpf = {
+        init: function() {
+          $.getJSON("http://api.twitter.com/1/statuses/user_timeline/burnto.json?callback=?", bpf.updateTwitter);
+        },
+        updateTwitter: function(results) {
+          $.each(results, function() {
+            console.log(this);
+            $("body")
+              .append($("<p></p>")
+                .append($("<span></span>")
+                  .addClass("tweet"))
+                .html(this.text + " " )
+                .append($("<span></span>")
+                  .addClass("createdAt")
+                  .html(this.created_at)));
+          })
+        }
+      }
+
+      google.load("jquery", "1");
+      google.setOnLoadCallback(bpf.init);
+
+/*
+      function twitter(results) {
+        alert(results)
+      }
+*/
+/*
+		  $(function() {
+		  
+		  })
+*/
+      
+    </script>
+    <script type="text/javascript" src="></script>
+  </body>
+</html>
