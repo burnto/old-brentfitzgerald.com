@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <title>Brent Fitzgerald</title>
+    <meta name="description" content="Designer and builder of digital things, and the connections between those things.">
+    <meta name="keywords" content="brent fitzgerald, taco lab, tacolab, mit, media lab, sifteo, siftables, design, technology, digital, network">
+    <link rel="shortcut icon" href="favicon16.png"/> 
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <!--[if IE]><script src="js/excanvas.js"></script><![endif]-->
+    <style type="text/css" media="screen">
+
+      body {
+        margin: 0; 
+        padding: 0;
+        overflow: hidden;
+        font-size: 64px;
+      }
+      .updates p {
+        display: none;
+        position: absolute;
+        width: 800px;
+        background-color: rgb(255,255,255);
+        padding: 10px;
+        margin: 10px;
+        -webkit-box-shadow: rgba(0, 0, 0, 1) 0 3px 10px;
+        -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 10px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="updates"></div>
+    <canvas></canvas>
+
+    <script src="js/jquery-1.4.2.min.js"></script>
+    <script src="js/pretty.js"></script>
+    <script type="text/javascript">
+    
+      var bpf = {
+        pix_size: 30,
+        init: function() {
+          $("canvas").css({width: "100%", height: "100%"});          
+          $(window).resize(function() {
+            bpf.draw();
+          })
+          bpf.draw();
+          // $.getJSON("http://api.twitter.com/1/statuses/user_timeline/burnto.json?callback=?", bpf.updateTwitter);
+          $(window).mousemove(function(e) {
+            bpf.draw(e.pageX, e.pageY, 30);
+          })
+        },
+        
+        drawPix: function(ctx, x, y, size) {
+            var color = [];
+            color.push(bpf.randomInt(255));
+            color.push(bpf.randomInt(255));
+            color.push(bpf.randomInt(255));
+            ctx.fillStyle = "rgb(" + color.join(',') + ")";
+            ctx.fillRect(x, y, bpf.pix_size, bpf.pix_size);
+        },
+
+        draw: function(pageX, pageY, size) {
+          console.log([pageX, pageY]);
+          pageX = pageX || -1;
+          pageY = pageY || -1;
+          size = size || bpf.pix_size;
+          var width = $(window).width();
+          var height = $("body").height();
+          var canvas = $("canvas")
+            .attr({"width": width, "height": height});
+          
+          cv = canvas.get(0)
+          if (typeof(G_vmlCanvasManager) != 'undefined') { // ie IE
+            G_vmlCanvasManager.initElement(cv);
+            alert(cv);
+          }
+          
+          var ctx = cv.getContext("2d");
+          for(var y = 0; y < height; y+=size) { 
+            for(var x = 0; x < width; x+=size) {
+              if(pageX < x || pageX >= x + size || pageY < y || pageY >= y + size) {
+                bpf.drawPix(ctx, x, y, size)
+              }
+            }
+          }
+        },  
+        randomInt: function(max) {
+          return Math.floor(Math.random()*max);
+        },
+        
+        updateTwitter: function(results) {
+          $.each(results, function() {
+            $("body .updates")
+              .append($("<p></p>")
+                // .show()
+                .append($("<span></span>")
+                  .addClass("tweet"))
+                .html(this.text + " " )
+                .append($("<span></span>")
+                  .addClass("createdAt")
+                  .html(prettyDate(this.created_at))));
+                  
+          })
+        },
+        
+        showNextTweet: function() {
+          bpf.draw();
+          var current = $("body .updates p:visible:first");
+          if(current.length > 0) {
+            current.fadeOut().next().fadeIn();
+          }else{
+            $("body .updates p:first").fadeIn();
+          }
+        }
+        
+      }
+      $(bpf.init);
+      
+    </script>
+  </body>
+</html>
