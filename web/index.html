@@ -35,30 +35,27 @@
     <script type="text/javascript">
     
       var bpf = {
-        pix_size: 30,
         init: function() {
           $("canvas").css({width: "100%", height: "100%"});          
-          $(window).resize(function() {
-            bpf.draw();
-          })
-          bpf.draw();
           // $.getJSON("http://api.twitter.com/1/statuses/user_timeline/burnto.json?callback=?", bpf.updateTwitter);
-          $(window).mousemove(function(e) {
-            bpf.draw(e.pageX, e.pageY, 30);
-          })
+          $(window)
+          .mousemove(function(e) {
+            bpf.draw(e.pageX, e.pageY);
+          }).mousedown(function(e) {
+            bpf.pix_size = 256;
+            bpf.draw(e.pageX, e.pageY);
+          }).mouseup(function(e) {
+            bpf.pix_size = 32;
+            bpf.draw(e.pageX, e.pageY);
+          }).resize(function() {
+            bpf.draw();
+          }).trigger("mouseup")
         },
         
         drawPix: function(ctx, x, y, size) {
-            var color = [];
-            color.push(bpf.randomInt(255));
-            color.push(bpf.randomInt(255));
-            color.push(bpf.randomInt(255));
-            ctx.fillStyle = "rgb(" + color.join(',') + ")";
-            ctx.fillRect(x, y, bpf.pix_size, bpf.pix_size);
         },
 
         draw: function(pageX, pageY, size) {
-          console.log([pageX, pageY]);
           pageX = pageX || -1;
           pageY = pageY || -1;
           size = size || bpf.pix_size;
@@ -76,9 +73,16 @@
           var ctx = cv.getContext("2d");
           for(var y = 0; y < height; y+=size) { 
             for(var x = 0; x < width; x+=size) {
+              var color = [];
               if(pageX < x || pageX >= x + size || pageY < y || pageY >= y + size) {
-                bpf.drawPix(ctx, x, y, size)
+                color.push(bpf.randomInt(255));
+                color.push(bpf.randomInt(255));
+                color.push(bpf.randomInt(255));
+              }else{
+                color = [255,255,255];
               }
+              ctx.fillStyle = "rgb(" + color.join(',') + ")";
+              ctx.fillRect(x, y, bpf.pix_size, bpf.pix_size);
             }
           }
         },  
