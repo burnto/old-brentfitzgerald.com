@@ -31,13 +31,11 @@
     <canvas></canvas>
 
     <script src="js/jquery-1.4.2.min.js"></script>
-    <script src="js/pretty.js"></script>
     <script type="text/javascript">
     
       var bpf = {
         init: function() {
           $("canvas").css({width: "100%", height: "100%"});          
-          // $.getJSON("http://api.twitter.com/1/statuses/user_timeline/burnto.json?callback=?", bpf.updateTwitter);
           $(window)
           .mousemove(function(e) {
             bpf.draw(e.pageX, e.pageY);
@@ -88,31 +86,6 @@
         },  
         randomInt: function(max) {
           return Math.floor(Math.random()*max);
-        },
-        
-        updateTwitter: function(results) {
-          $.each(results, function() {
-            $("body .updates")
-              .append($("<p></p>")
-                // .show()
-                .append($("<span></span>")
-                  .addClass("tweet"))
-                .html(this.text + " " )
-                .append($("<span></span>")
-                  .addClass("createdAt")
-                  .html(prettyDate(this.created_at))));
-                  
-          })
-        },
-        
-        showNextTweet: function() {
-          bpf.draw();
-          var current = $("body .updates p:visible:first");
-          if(current.length > 0) {
-            current.fadeOut().next().fadeIn();
-          }else{
-            $("body .updates p:first").fadeIn();
-          }
         }
         
       }
