@@ -29,12 +29,6 @@ function Grid(defaultValue) {
   this.values = [[]];
   this.height = 0;
   this.width = 0;
-  // for(var x = 0; x < width; x++) {
-  //   this.values[x] = [];
-  //   for(var y = 0; y < height; y++) {
-  //     this.values[y] = defaultValue;
-  //   }
-  // }
 }
 Grid.prototype = {
   addRow: function(defaultValue) {

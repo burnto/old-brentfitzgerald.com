@@ -6,37 +6,67 @@
     <link rel="shortcut icon" href="favicon16.png"/> 
     <meta http-equiv="X-UA-Compatible" content="IE=7" />
     <!--[if IE]><script src="js/excanvas.js"></script><![endif]-->
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen" charset="utf-8">
     <style type="text/css" media="screen">
 
       body {
         margin: 0; 
-        padding: 0;
-        overflow: hidden;
-        font-size: 64px;
+        padding: 50px;
+        background: #fff;
       }
-      .updates p {
-        display: none;
-        position: absolute;
-        width: 800px;
-        background-color: rgb(255,255,255);
-        padding: 10px;
-        margin: 10px;
-        -webkit-box-shadow: rgba(0, 0, 0, 1) 0 3px 10px;
-        -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 10px 10px;
+
+      #content {
+        width: 40em;
       }
+
+  		p {
+        margin: 0 0 18px 0;
+  		  font: 24px 'OFLSortsMillGoudyRegular', Arial, sans-serif;
+  		  letter-spacing: 0;
+  		  color: #444;
+  		}
+  		
+  		a {
+  		  color: #5F8DD6;
+  		  text-decoration: none;
+/*        color: #999;*/
+  		}
+  		a:hover {
+  		  color: #F8B73A;
+  		}
+
     </style>
   </head>
-  <body>
-    <div class="updates"></div>
-    <canvas></canvas>
-
-    <script src="js/socket.io.js"></script>
-    <script src="js/jquery-1.4.2.min.js"></script>
-    <script src="js/bpf.js"></script>
-    <script type="text/javascript">
-      io.setPath('/path/to/socket.io/');
-      $(Tiny.init);
-    </script>
+  <body style="margin: 0">
+    <div id="content">
+      <p>
+        Hello, my name is Brent Fitzgerald.
+      </p>
+      <p>
+        I'm a member of the founding team at <a href="http://sifteo.com/">Sifteo</a>. I lead design, development, and management of the software for Siftables&mdash;electronic, interactive tiles for play and learning.
+      </p>
+      <p>
+        I received my MS from the MIT Media Lab, where I was a member of the Physical Language Workshop working with John Maeda. I received a BS in Symbolic Systems from Stanford University with a concentration in Natural Language. I grew up in Mill Valley, CA.
+      </p>
+      <p>
+        <a href="http://www.linkedin.com/in/brentfitzgerald">linkedin.com/in/brentfitzgerald</a><br/>
+        <a href="http://www.facebook.com/brent.fitzgerald">facebook.com/brent.fitzgerald</a><br/>
+        <a href="http://twitter.com/burnto">twitter.com/burnto</a><br/>
+      </p>
+      <p>
+        
+      </p>
+      <!-- <p>
+        Prior to Sifteo, I co-founded <a href="http://tacolab.com/">Taco Lab</a>, helping companies with technology and design for systems that link the web with physical devices. 
+      </p>
+      <p>
+        Before Taco Lab, I served as design chief at Swivel, an early web-based community data visualization and analysis tool, where I helped create a social business intelligence product.      
+      </p>
+      <p>
+        I received my MS from the MIT Media Lab, where I was a member of the Physical Language Workshop working with John Maeda. I received a BS in Symbolic Systems from Stanford University with a concentration in Natural Language. I grew up in Mill Valley, CA.
+      </p> -->
+    </div>
+    
     <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
