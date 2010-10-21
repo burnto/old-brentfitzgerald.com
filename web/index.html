@@ -30,67 +30,12 @@
     <div class="updates"></div>
     <canvas></canvas>
 
+    <script src="js/socket.io.js"></script>
     <script src="js/jquery-1.4.2.min.js"></script>
+    <script src="js/bpf.js"></script>
     <script type="text/javascript">
-    
-      var bpf = {
-        init: function() {
-          $("canvas").css({width: "100%", height: "100%"});          
-          $(window)
-          .mousemove(function(e) {
-            bpf.draw(e.pageX, e.pageY);
-          }).mousedown(function(e) {
-            bpf.pix_size = 256;
-            bpf.draw(e.pageX, e.pageY);
-          }).mouseup(function(e) {
-            bpf.pix_size = 32;
-            bpf.draw(e.pageX, e.pageY);
-          }).resize(function() {
-            bpf.draw();
-          }).trigger("mouseup")
-        },
-        
-        drawPix: function(ctx, x, y, size) {
-        },
-
-        draw: function(pageX, pageY, size) {
-          pageX = pageX || -1;
-          pageY = pageY || -1;
-          size = size || bpf.pix_size;
-          var width = $(window).width();
-          var height = $("body").height();
-          var canvas = $("canvas")
-            .attr({"width": width, "height": height});
-          
-          cv = canvas.get(0)
-          if (typeof(G_vmlCanvasManager) != 'undefined') { // ie IE
-            G_vmlCanvasManager.initElement(cv);
-            alert(cv);
-          }
-          
-          var ctx = cv.getContext("2d");
-          for(var y = 0; y < height; y+=size) { 
-            for(var x = 0; x < width; x+=size) {
-              var color = [];
-              if(pageX < x || pageX >= x + size || pageY < y || pageY >= y + size) {
-                color.push(bpf.randomInt(255));
-                color.push(bpf.randomInt(255));
-                color.push(bpf.randomInt(255));
-              }else{
-                color = [255,255,255];
-              }
-              ctx.fillStyle = "rgb(" + color.join(',') + ")";
-              ctx.fillRect(x, y, bpf.pix_size, bpf.pix_size);
-            }
-          }
-        },  
-        randomInt: function(max) {
-          return Math.floor(Math.random()*max);
-        }
-        
-      }
-      $(bpf.init);
-      
+      io.setPath('/path/to/socket.io/');
+      $(Tiny.init);
     </script>
     <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
