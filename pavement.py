@@ -14,7 +14,4 @@ def deploy():
     cmd = "scp -r web/* %s@%s:%s/" % (options.username, 
                                        options.server, 
                                        options.path)
-    sh(cmd)
-    # print cmd
-    # paver.ssh.scp(source, dest)
-    
+    sh(cmd)    
