@@ -1,59 +1,85 @@
 <html>
   <head>
     <title>Brent Fitzgerald</title>
-    <meta name="description" content="Designer and builder of digital things, and the connections between those things.">
-    <meta name="keywords" content="brent fitzgerald, taco lab, tacolab, mit, media lab, sifteo, siftables, design, technology, digital, network">
+    <meta name="description" content="Designer/developer at Sifteo, co-founder of Taco Lab, friend of plants and bicycles.">
+    <meta name="keywords" content="brent fitzgerald, taco lab, tacolab, mit, media lab, sifteo, siftables, design, technology, digital, network, physical language workshop, plw">
     <link rel="shortcut icon" href="favicon16.png"/> 
-    <meta http-equiv="X-UA-Compatible" content="IE=7" />
-    <!--[if IE]><script src="js/excanvas.js"></script><![endif]-->
+    <link href='http://fonts.googleapis.com/css?family=Arv&subset=latin' rel='stylesheet' type='text/css'>
+    
     <link rel="stylesheet" href="style.css" type="text/css" media="screen" charset="utf-8">
     <style type="text/css" media="screen">
 
       body {
         margin: 0; 
-        padding: 50px;
-        background: black url(images/dandelion.jpg) no-repeat 0 -600px;
+  		  font: 24px/140% 'Molengo', Arial, sans-serif;
+  		  color: black;
       }
 
       #content {
-        width: 25em;
+        width: 66%;
+        max-width: 32em;
+        margin: 100px auto;
       }
 
   		p {
-        margin: 0 0 18px 0;
-  		  font: 20px 'OFLSortsMillGoudyRegular', Arial, sans-serif;
-  		  letter-spacing: 0;
-  		  color: black;
+        margin: 0 0 1em 0;
   		}
   		
   		a {
-  		  color: #BB4526;
-  		  text-decoration: none;
-/*        color: #999;*/
+  		  color: #666;
+  		  text-decoration: underline;
   		}
-  		a:hover {
-  		  color: #EC5433;
+  		
+  		p a:hover {
+  		  color: black;
+  		  background-color: yellow;
+  		  text-decoration: none;
   		}
 
     </style>
   </head>
   <body style="margin: 0">
-    <div id="content">
-      <p>
-        Hi, my name is Brent Fitzgerald.
+    <section id="content">
+      <section>
+        <p>
+          Hi, my name is <strong>Brent Fitzgerald.</strong>
+          I'm a member of the founding team at <a href="http://sifteo.com/">Sifteo</a>, where I design and develop the software for Siftables&mdash;electronic, interactive tiles for play and learning.
+        </p>
+      </section>
+      <!-- <p>
+        MS from the <a href="http://media.mit.edu/">MIT Media Lab</a>. member of the <a href="http://plw.media.mit.edu/" title="PLW">Physical Language Workshop</a>.
       </p>
       <p>
-        I'm a member of the founding team at <a href="http://sifteo.com/">Sifteo</a>. I lead design and development of the software for Siftables&mdash;electronic, interactive tiles for play and learning.
-      </p>
-      <p>
-        I received my MS from the <a href="http://media.mit.edu/">MIT Media Lab</a>, where I was a member of the <a href="http://plw.media.mit.edu/" title="PLW">Physical Language Workshop</a>, and I received a BS in <a href="http://symsys.stanford.edu/">Symbolic Systems</a> from Stanford University with a concentration in Natural Language. I grew up in <a href="http://www.youtube.com/watch?v=w-YaWE0zu-c">Mill Valley, California</a>.
-      </p>
-      <p>
+        BS in <a href="http://symsys.stanford.edu/">Symbolic Systems</a> from Stanford University with a concentration in Natural Language
+      </p> -->
+      <section>
         <a href="http://www.linkedin.com/in/brentfitzgerald"><img src="images/linkedin_32.png"/></a> 
         <a href="http://www.facebook.com/brent.fitzgerald"><img src="images/facebook_32.png"/></a> 
         <a href="http://twitter.com/burnto"><img src="images/twitter_32.png"/></a>
-      </p>
-    </div>
+      </section>
+    </section>
+    <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      $(function() {
+        var urls = ['images/battery.ico', 'images/battery_empty.ico'];
+        var index = 0;
+        var head = $('head');
+        toggle = function () {
+          var f = $("link[rel='shortcut icon']");
+          var f2 = $("<link></link>").attr({
+            "rel": 'shortcut icon', 
+            'type': 'image/x-icon', 
+            "href": urls[index]
+          });
+          index = (index + 1) % urls.length;
+          f.remove();
+          head.append(f2);
+        };
+        toggle();
+        setInterval(toggle, 1000);
+      })
+    </script>
+    
     
     <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
